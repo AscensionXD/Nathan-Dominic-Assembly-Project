@@ -10,7 +10,7 @@ public class pepasm {
         }
 
 
-        //Create a map for assembly to java conversion
+        // Create a map for assembly to java conversion
         Map<String,String[]> codes = new HashMap<>();
         codes.put("STBA", new String[]{null,"F1"});
         codes.put("LDBA", new String[]{"D0","F0"});
@@ -24,11 +24,11 @@ public class pepasm {
         codes.put("BRNE", new String[]{null,"39"});
 
 
-        //Read the file
+        // Read the file
         Scanner sc = new Scanner(new File(args[0]));
         ArrayList<String> output = new ArrayList<>();
 
-        //Loop through lines of file
+        // Loop through lines of file
         while(sc.hasNextLine()) {
             String line = sc.nextLine().trim();
 
@@ -44,7 +44,7 @@ public class pepasm {
                 continue;
             }
 
-            //Determine address mode
+            // Determine address mode
             String mode = "";
             if(parts.length > 2) mode = parts[2].toLowerCase();
             String op;
@@ -55,7 +55,7 @@ public class pepasm {
 
             output.add(op);
 
-            //Convert to hex
+            // Convert to hex
             if(parts.length > 1 && parts[1].startsWith("0x")) {
                 StringBuilder h = new StringBuilder(parts[1].substring(2).toUpperCase());
                 while(h.length() < 4) h.insert(0, "0");
@@ -66,7 +66,7 @@ public class pepasm {
 
         sc.close();
 
-        //Print output
+        // Print output
         for(int i=0;i<output.size();i++){
             System.out.print(output.get(i));
             if(i<output.size()-1) System.out.print(" ");
