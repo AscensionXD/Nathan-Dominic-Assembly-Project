@@ -5,7 +5,7 @@ public class pepasm {
 
     public static void main(String[] args) throws IOException {
         if(args.length != 1) {
-            System.out.println("Usage: java pepasm file.pep");
+            System.out.println("Using java pepasm file.pep");
             return;
         }
 
@@ -28,12 +28,14 @@ public class pepasm {
         Scanner sc = new Scanner(new File(args[0]));
         ArrayList<String> output = new ArrayList<>();
 
+        //Loop through lines of file
         while(sc.hasNextLine()) {
             String line = sc.nextLine().trim();
 
             if(line.isEmpty() || line.startsWith(";") || line.equalsIgnoreCase(".END"))
                 continue;
 
+            //Split lines into parts
             String[] parts = line.split("[ ,]+");
             String instr = parts[0].toUpperCase();
 
@@ -42,6 +44,7 @@ public class pepasm {
                 continue;
             }
 
+            //Determine address mode
             String mode = "";
             if(parts.length > 2) mode = parts[2].toLowerCase();
             String op;
@@ -52,6 +55,7 @@ public class pepasm {
 
             output.add(op);
 
+            //Convert to hex
             if(parts.length > 1 && parts[1].startsWith("0x")) {
                 StringBuilder h = new StringBuilder(parts[1].substring(2).toUpperCase());
                 while(h.length() < 4) h.insert(0, "0");
@@ -62,6 +66,7 @@ public class pepasm {
 
         sc.close();
 
+        //Print output
         for(int i=0;i<output.size();i++){
             System.out.print(output.get(i));
             if(i<output.size()-1) System.out.print(" ");
