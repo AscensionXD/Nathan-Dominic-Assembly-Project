@@ -35,7 +35,7 @@ public class pepasm {
             if(line.isEmpty() || line.startsWith(";") || line.equalsIgnoreCase(".END"))
                 continue;
 
-            //Split lines into parts
+            // Split lines into parts
             String[] parts = line.split("[ ,]+");
             String instr = parts[0].toUpperCase();
 
