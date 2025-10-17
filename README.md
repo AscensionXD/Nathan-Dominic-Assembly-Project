@@ -1,6 +1,6 @@
 to run - 
 make sure youre in src 
-> cd /Users/dszpak/IdeaProjects/Nathan-Dominic-Assembly-Project/src
+> cd /Users/<user>/IdeaProjects/Nathan-Dominic-Assembly-Project/src
 
 ls
 check for .java and .pep files
